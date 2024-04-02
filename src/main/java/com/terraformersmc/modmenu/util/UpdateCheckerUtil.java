@@ -39,11 +39,9 @@ public class UpdateCheckerUtil {
 			return;
 		}
 
-		Util.getMainWorkerExecutor().execute(() -> {
-			LOGGER.info("Checking mod updates...");
-			checkForModrinthUpdates();
-			checkForCustomUpdates();
-		});
+		LOGGER.info("Checking mod updates...");
+		Util.getMainWorkerExecutor().execute(UpdateCheckerUtil::checkForModrinthUpdates);
+		checkForCustomUpdates();
 	}
 
 	public static void checkForCustomUpdates() {
@@ -52,7 +50,7 @@ public class UpdateCheckerUtil {
 			if (updateChecker == null) {
 				return;
 			}
-			mod.setUpdateInfo(updateChecker.checkForUpdates());
+			UpdateCheckerThread.run(mod, () -> mod.setUpdateInfo(updateChecker.checkForUpdates()));
 		});
 	}
 
