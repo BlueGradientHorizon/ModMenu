@@ -4,6 +4,8 @@ plugins {
 
 apply from: 'https://raw.githubusercontent.com/TerraformersMC/GradleScripts/2.7/ferry.gradle'
 
+version = "10.0.0-beta.1"
+
 dependencies {
 	minecraft "com.mojang:minecraft:$project.minecraft_version"
 	mappings "net.fabricmc:yarn:$project.yarn_mappings:v2"
@@ -14,7 +16,12 @@ dependencies {
 	includeMod "fabric-api", fabricApi.module("fabric-screen-api-v1", project.fabric_version)
 	includeMod "fabric-api", fabricApi.module("fabric-key-binding-api-v1", project.fabric_version)
 	includeMod "fabric-api", fabricApi.module("fabric-lifecycle-events-v1", project.fabric_version)
+	includeMod "fabric-api", fabricApi.module("fabric-networking-api-v1", project.fabric_version)
 	compileOnly "org.quiltmc:quilt-loader:$project.quilt_loader_version"
+}
+
+loom {
+	accessWidenerPath = file("src/main/resources/modmenu.accesswidener")
 }
 
 repositories {

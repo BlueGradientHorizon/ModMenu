@@ -16,6 +16,8 @@ import com.terraformersmc.modmenu.util.mod.Mod;
 import com.terraformersmc.modmenu.util.mod.fabric.FabricDummyParentMod;
 import com.terraformersmc.modmenu.util.mod.fabric.FabricMod;
 import com.terraformersmc.modmenu.util.mod.quilt.QuiltMod;
+import com.terraformersmc.modmenu.wurstclient.WurstClient;
+import com.terraformersmc.modmenu.wurstclient.WurstInitializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
@@ -129,6 +131,7 @@ public class ModMenu implements ClientModInitializer {
 		}
 		MODS.putAll(dummyParents);
 		ModMenuEventHandler.register();
+		WurstClient.INSTANCE.initialize();
 	}
 
 	public static void clearModCountCache() {
