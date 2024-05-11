@@ -40,6 +40,7 @@ public class ModMenuOptionsScreen extends GameOptionsScreen {
 
 	@Override
 	public void removed() {
+		ModMenu.checkForUpdates();
 		ModMenuConfigManager.save();
 		ModMenu.checkForUpdates();
 	}
